@@ -1,0 +1,28 @@
+{
+    "name": "themismin/laravel-xunsearch",
+    "description": "Laravel 迅搜扩展包",
+    "type": "library",
+    "authors": [
+        {
+            "name": "themismin",
+            "email": "themismin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "Laravel/Scout": "^6.0",
+        "hightman/xunsearch": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ThemisMin\\LaravelXunSearch\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ThemisMin\\LaravelXunSearch\\XunSearchServiceProvider"
+            ]
+        }
+    }
+}
