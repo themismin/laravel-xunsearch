@@ -141,6 +141,11 @@ class XunSearchEngine extends Engine
                 $search->addRange($key, $value['from'], $value['to']);
             });
 
+        if (isset($builder->weights))
+            collect($builder->weights)->map(function ($value, $key) use ($search) {
+                $search->addWeight($key, $value['term'], $value['weight']);
+            });
+
         return ['docs' => $search->search(), 'total' => $search->getLastCount()];
     }
 

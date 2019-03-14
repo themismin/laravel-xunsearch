@@ -19,6 +19,7 @@ trait XunSearchTrait
     {
         $this->registerSearchableRangeSearch();
         $this->registerSearchableFuzzy();
+        $this->registerSearchableAddWeight();
     }
 
     public function registerSearchableRangeSearch()
@@ -35,6 +36,16 @@ trait XunSearchTrait
     {
         Builder::macro('fuzzy', function ($fuzzy = true) {
             $this->fuzzy = (bool) $fuzzy;
+
+            return $this;
+        });
+    }
+
+    public function registerSearchableAddWeight()
+    {
+        Builder::macro('addWeight', function (string $field, string $term, float $weight=1.0) {
+            $this->weights[$field]['term'] = $term;
+            $this->weights[$field]['weight'] = $weight;
 
             return $this;
         });
