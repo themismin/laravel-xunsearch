@@ -97,6 +97,15 @@ class XunSearchEngine extends Engine
     }
 
     /**
+     * 获取搜索对象
+     * @param Builder $builder
+     * @return \XSSearch
+     */
+    public function getSearch(Builder $builder) {
+        return $this->getXS($builder->model)->search;
+    }
+
+    /**
      * Perform the given search on the engine.
      *
      * @param  \Laravel\Scout\Builder  $builder
@@ -222,7 +231,7 @@ class XunSearchEngine extends Engine
      * @return XunSearch
      * @throws
      */
-    public function getXS(Model $model)
+    protected function getXS(Model $model)
     {
         $app_name = $model->searchableAs();
 

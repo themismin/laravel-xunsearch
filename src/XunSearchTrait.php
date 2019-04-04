@@ -20,6 +20,7 @@ trait XunSearchTrait
         $this->registerSearchableRangeSearch();
         $this->registerSearchableFuzzy();
         $this->registerSearchableAddWeight();
+        $this->registerSearchableGetSearch();
     }
 
     public function registerSearchableRangeSearch()
@@ -48,6 +49,16 @@ trait XunSearchTrait
             $this->weights[$field]['weight'] = $weight;
 
             return $this;
+        });
+    }
+
+    /**
+     * 获取搜索对象
+     */
+    public function registerSearchableGetSearch()
+    {
+        Builder::macro('getSearch', function () {
+            return $this->engine()->getSearch($this);
         });
     }
 }
